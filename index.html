@@ -7,13 +7,12 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --purple:#785aff;--purple-light:#EEEDFE;--purple-dark:#3C3489;--purple-text:#26215C;
+  --purple:#785aff;--purple-light:#EEEDFE;--purple-dark:#3C3489;
   --bg:#ffffff;--bg2:#f7f7f5;--bg3:#f0efe9;
   --text:#1a1a18;--text2:#5f5e5a;--text3:#888780;
   --success-bg:#e1f5ee;--success-txt:#0f6e56;
   --danger-bg:#fcebeb;--danger-txt:#a32d2d;
   --warn-bg:#faeeda;--warn-txt:#854f0b;
-  --info-bg:#e6f1fb;--info-txt:#0c447c;
   --border:rgba(0,0,0,0.1);--border2:rgba(0,0,0,0.18);
   --r-sm:6px;--r-md:8px;--r-lg:12px;
   --font:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
@@ -25,9 +24,8 @@
     --success-bg:#085041;--success-txt:#9fe1cb;
     --danger-bg:#791f1f;--danger-txt:#f09595;
     --warn-bg:#633806;--warn-txt:#fac775;
-    --info-bg:#042c53;--info-txt:#b5d4f4;
     --border:rgba(255,255,255,0.1);--border2:rgba(255,255,255,0.18);
-    --purple-light:#26215C;--purple-dark:#CECBF6;--purple-text:#EEEDFE;
+    --purple-light:#26215C;--purple-dark:#CECBF6;
   }
 }
 body{font-family:var(--font);background:var(--bg3);color:var(--text);min-height:100vh;font-size:14px}
@@ -42,12 +40,13 @@ body{font-family:var(--font);background:var(--bg3);color:var(--text);min-height:
 .btn-purple{background:var(--purple);color:#fff;border-color:var(--purple)}
 .btn-purple:hover{background:#6648e8}
 .btn-sm{font-size:12px;padding:4px 10px}
+.save-status{font-size:12px;color:var(--text3)}
 .main{max-width:1100px;margin:0 auto;padding:1.5rem}
-.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:1.25rem}
+.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:1.25rem}
 .metric{background:var(--bg);border:0.5px solid var(--border);border-radius:var(--r-lg);padding:12px 14px}
 .metric-label{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px}
 .metric-val{font-size:24px;font-weight:500}
-.metric-val.s{color:var(--success-txt)}.metric-val.d{color:var(--danger-txt)}.metric-val.w{color:var(--warn-txt)}.metric-val.p{color:var(--purple)}
+.metric-val.s{color:var(--success-txt)}.metric-val.d{color:var(--danger-txt)}.metric-val.p{color:var(--purple)}
 .prog-wrap{height:3px;background:var(--bg2);border-radius:2px;margin-top:6px}
 .prog-fill{height:100%;background:var(--purple);border-radius:2px;transition:width .3s}
 .tabs{display:flex;gap:2px;background:var(--bg2);border-radius:var(--r-md);padding:3px;margin-bottom:1.25rem}
@@ -60,7 +59,7 @@ body{font-family:var(--font);background:var(--bg3);color:var(--text);min-height:
 .dept-section{margin-bottom:1.25rem}
 .dept-head{display:flex;align-items:center;gap:8px;margin-bottom:6px;padding-bottom:6px;border-bottom:0.5px solid var(--border)}
 .dept-count{font-size:11px;color:var(--text3)}
-.task-row{display:grid;grid-template-columns:22px 1fr 110px 100px 60px 32px;gap:8px;align-items:start;padding:8px 0;border-bottom:0.5px solid var(--border);font-size:13px}
+.task-row{display:grid;grid-template-columns:22px 1fr 110px 100px 32px;gap:8px;align-items:start;padding:8px 0;border-bottom:0.5px solid var(--border);font-size:13px}
 .task-row:last-child{border-bottom:none}
 .task-cb{width:18px;height:18px;border-radius:5px;border:1.5px solid var(--border2);cursor:pointer;display:flex;align-items:center;justify-content:center;margin-top:1px;flex-shrink:0;transition:all .15s;user-select:none}
 .task-cb:hover{border-color:var(--purple)}.task-cb.done{background:var(--purple);border-color:var(--purple)}
@@ -74,29 +73,22 @@ body{font-family:var(--font);background:var(--bg3);color:var(--text);min-height:
 .st-block{background:var(--danger-bg);color:var(--danger-txt)}
 .st-todo{background:var(--bg2);color:var(--text2)}
 .st-wait{background:var(--warn-bg);color:var(--warn-txt)}
-.nick-flag{font-size:11px;font-weight:500;color:var(--purple)}
 .edit-btn{width:26px;height:26px;border-radius:var(--r-sm);border:0.5px solid var(--border);background:none;color:var(--text3);cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .15s}
 .edit-btn:hover{background:var(--bg2);color:var(--text)}
-.ci-item{display:flex;gap:12px;align-items:flex-start;padding:11px 0;border-bottom:0.5px solid var(--border)}
-.ci-item:last-child{border-bottom:none}
-.ci-icon{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:13px;margin-top:1px}
-.ci-open{background:var(--bg2);color:var(--text3)}.ci-prog{background:var(--purple-light);color:var(--purple-dark)}
-.ci-block{background:var(--danger-bg);color:var(--danger-txt)}.ci-done{background:var(--success-bg);color:var(--success-txt)}
-.ci-title{font-size:13px;font-weight:500;margin-bottom:3px}
-.ci-desc{font-size:12px;color:var(--text2);line-height:1.5;margin-bottom:5px}
-.ci-tags{display:flex;gap:4px;flex-wrap:wrap}
-.tag{font-size:10px;padding:2px 8px;border-radius:20px;background:var(--bg2);color:var(--text3);border:0.5px solid var(--border)}
-.ai-box{background:var(--bg);border:0.5px solid var(--border);border-radius:var(--r-lg);padding:16px 18px}
-.ai-label{font-size:11px;font-weight:500;color:var(--text3);text-transform:uppercase;letter-spacing:.04em;margin-bottom:10px}
-.ai-chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
-.ai-chip{font-size:12px;padding:6px 13px;border-radius:20px;border:0.5px solid var(--border2);background:var(--bg2);color:var(--text2);cursor:pointer;font-family:var(--font);text-decoration:none;display:inline-block;transition:all .15s}
-.ai-chip:hover{background:var(--purple-light);color:var(--purple-text);border-color:var(--purple)}
-.ai-note{font-size:12px;color:var(--text3);margin-top:10px;padding-top:10px;border-top:0.5px solid var(--border);line-height:1.6}
-
-/* Modal */
+.summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.summary-card{background:var(--bg);border:0.5px solid var(--border);border-radius:var(--r-lg);padding:14px 16px}
+.sc-dept{font-size:12px;font-weight:500;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.sc-badge{font-size:10px;font-weight:500;padding:2px 8px;border-radius:20px}
+.sc-stats{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+.sc-done{font-size:20px;font-weight:500;color:var(--success-txt)}
+.sc-total{font-size:12px;color:var(--text3)}
+.sc-pct{font-size:12px;font-weight:500;color:var(--purple)}
+.sc-bar-wrap{height:4px;background:var(--bg2);border-radius:2px;overflow:hidden}
+.sc-bar-fill{height:100%;background:var(--purple);border-radius:2px;transition:width .3s}
+.sc-blocked{font-size:11px;color:var(--danger-txt);margin-top:6px}
 .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:200;align-items:center;justify-content:center}
 .overlay.show{display:flex}
-.modal{background:var(--bg);border-radius:var(--r-lg);border:0.5px solid var(--border2);padding:20px 22px;width:480px;max-width:95vw;max-height:90vh;overflow-y:auto}
+.modal{background:var(--bg);border-radius:var(--r-lg);border:0.5px solid var(--border2);padding:20px 22px;width:460px;max-width:95vw;max-height:90vh;overflow-y:auto}
 .modal-title{font-size:15px;font-weight:500;margin-bottom:16px}
 .field{margin-bottom:12px}
 .field label{display:block;font-size:12px;color:var(--text2);margin-bottom:4px}
@@ -104,16 +96,10 @@ body{font-family:var(--font);background:var(--bg3);color:var(--text);min-height:
 .field textarea{min-height:60px;resize:vertical}
 .modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:16px}
 .token-notice{font-size:12px;color:var(--text2);background:var(--bg2);border-radius:var(--r-md);padding:10px 12px;margin-bottom:14px;line-height:1.6}
-
-/* Add task bar */
-.add-bar{display:flex;gap:8px;margin-bottom:14px}
-.add-bar input{flex:1;font-size:13px;padding:7px 10px;border-radius:var(--r-md);border:0.5px solid var(--border2);background:var(--bg);color:var(--text);font-family:var(--font)}
-.saving-indicator{font-size:12px;color:var(--text3);padding:4px 0}
-
 @media(max-width:700px){
   .metrics{grid-template-columns:repeat(2,1fr)}
   .task-row{grid-template-columns:22px 1fr 80px 32px}
-  .task-owner,.nick-flag{display:none}
+  .task-owner{display:none}
 }
 </style>
 </head>
@@ -128,7 +114,7 @@ body{font-family:var(--font);background:var(--bg3);color:var(--text);min-height:
     </div>
   </div>
   <div class="nav-right">
-    <span class="saving-indicator" id="save-status"></span>
+    <span class="save-status" id="save-status"></span>
     <button class="btn btn-sm" onclick="openTokenModal()">⚙ GitHub token</button>
     <button class="btn btn-purple btn-sm" onclick="openAddTask()">+ Add task</button>
   </div>
@@ -136,23 +122,30 @@ body{font-family:var(--font);background:var(--bg3);color:var(--text);min-height:
 
 <div class="main">
   <div class="metrics">
-    <div class="metric"><div class="metric-label">Total tasks</div><div class="metric-val p" id="m-total">—</div><div class="prog-wrap"><div class="prog-fill" id="m-bar" style="width:0%"></div></div></div>
-    <div class="metric"><div class="metric-label">Completed</div><div class="metric-val s" id="m-done">—</div></div>
-    <div class="metric"><div class="metric-label">Blocked</div><div class="metric-val d" id="m-block">—</div></div>
-    <div class="metric"><div class="metric-label">Needs Nick</div><div class="metric-val w" id="m-nick">—</div></div>
+    <div class="metric">
+      <div class="metric-label">Total tasks</div>
+      <div class="metric-val p" id="m-total">—</div>
+      <div class="prog-wrap"><div class="prog-fill" id="m-bar" style="width:0%"></div></div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">Completed</div>
+      <div class="metric-val s" id="m-done">—</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">Blocked</div>
+      <div class="metric-val d" id="m-block">—</div>
+    </div>
   </div>
 
   <div class="tabs">
     <button class="tab active" onclick="switchTab('tracker',this)">Task tracker</button>
-    <button class="tab" onclick="switchTab('checklist',this)">Launch checklist</button>
-    <button class="tab" onclick="switchTab('ai',this)">AI assistant</button>
+    <button class="tab" onclick="switchTab('summary',this)">Summary</button>
   </div>
 
   <div id="pane-tracker" class="pane active">
     <div class="filter-row">
       <button class="fbtn on" onclick="setFilter('all',this)">All</button>
       <button class="fbtn" onclick="setFilter('block',this)">Blocked</button>
-      <button class="fbtn" onclick="setFilter('nick',this)">Needs Nick</button>
       <button class="fbtn" onclick="setFilter('todo',this)">To-do</button>
       <button class="fbtn" onclick="setFilter('prog',this)">In progress</button>
       <button class="fbtn" onclick="setFilter('done',this)">Done</button>
@@ -160,33 +153,15 @@ body{font-family:var(--font);background:var(--bg3);color:var(--text);min-height:
     <div id="task-list"></div>
   </div>
 
-  <div id="pane-checklist" class="pane">
-    <div style="background:var(--bg);border:0.5px solid var(--border);border-radius:var(--r-lg);padding:0 18px">
-      <div id="checklist-list"></div>
-    </div>
-  </div>
-
-  <div id="pane-ai" class="pane">
-    <div class="ai-box">
-      <div class="ai-label">AI assistant — opens Claude with context pre-loaded</div>
-      <div class="ai-chips">
-        <a class="ai-chip" href="https://claude.ai/new?q=For+the+Solviva+solar+financing+engagement+at+Tonik%3A+what+are+the+current+blockers+and+what+should+I+do+about+each+one%3F" target="_blank">What is blocked? ↗</a>
-        <a class="ai-chip" href="https://claude.ai/new?q=For+the+Solviva+solar+financing+engagement+at+Tonik%3A+what+tasks+require+my+personal+action+or+approval+this+week%3F" target="_blank">What needs Nick? ↗</a>
-        <a class="ai-chip" href="https://claude.ai/new?q=Draft+a+follow-up+message+to+Solviva+summarizing+current+status+of+the+solar+financing+engagement+and+what+we+need+from+them+next." target="_blank">Draft Solviva follow-up ↗</a>
-        <a class="ai-chip" href="https://claude.ai/new?q=For+the+Solviva+solar+financing+engagement+at+Tonik%3A+what+is+the+critical+path+to+launch%3F" target="_blank">Critical path ↗</a>
-        <a class="ai-chip" href="https://claude.ai/new?q=For+the+Solviva+solar+financing+engagement+at+Tonik%3A+summarize+what+still+needs+compliance+and+legal+sign-off+before+launch." target="_blank">Compliance gaps ↗</a>
-        <a class="ai-chip" href="https://claude.ai/new?q=For+the+Solviva+solar+financing+engagement+at+Tonik%3A+draft+an+escalation+brief+for+ManCom+covering+status%2C+blockers%2C+and+decisions+needed." target="_blank">Draft ManCom brief ↗</a>
-        <a class="ai-chip" href="https://claude.ai/new?q=For+the+Solviva+solar+financing+engagement+at+Tonik%3A+build+a+workback+timeline+from+launch+covering+all+dependencies." target="_blank">Build workback timeline ↗</a>
-      </div>
-      <div class="ai-note">Each button opens Claude with the question pre-loaded. For tracker updates, use the edit buttons directly on the task rows — no file changes needed.</div>
-    </div>
+  <div id="pane-summary" class="pane">
+    <div class="summary-grid" id="summary-grid"></div>
   </div>
 </div>
 
-<!-- Edit Task Modal -->
+<!-- Edit Modal -->
 <div class="overlay" id="edit-overlay">
   <div class="modal">
-    <div class="modal-title" id="modal-title">Edit task</div>
+    <div class="modal-title">Edit task</div>
     <input type="hidden" id="edit-id">
     <div class="field"><label>Task name</label><input type="text" id="edit-name"></div>
     <div class="field"><label>Department</label>
@@ -207,19 +182,16 @@ body{font-family:var(--font);background:var(--bg3);color:var(--text);min-height:
         <option value="wait">Waiting</option>
       </select>
     </div>
-    <div class="field"><label>Needs Nick?</label>
-      <select id="edit-nick"><option value="true">Yes</option><option value="false">No</option></select>
-    </div>
     <div class="field"><label>Note / blocker</label><textarea id="edit-flag"></textarea></div>
     <div class="modal-actions">
       <button class="btn" onclick="closeModal('edit-overlay')">Cancel</button>
-      <button class="btn" id="delete-btn" style="color:var(--danger-txt)" onclick="deleteTask()">Delete</button>
+      <button class="btn" style="color:var(--danger-txt)" onclick="deleteTask()">Delete</button>
       <button class="btn btn-purple" onclick="saveTask()">Save</button>
     </div>
   </div>
 </div>
 
-<!-- Add Task Modal -->
+<!-- Add Modal -->
 <div class="overlay" id="add-overlay">
   <div class="modal">
     <div class="modal-title">Add task</div>
@@ -241,9 +213,6 @@ body{font-family:var(--font);background:var(--bg3);color:var(--text);min-height:
         <option value="done">Done</option>
       </select>
     </div>
-    <div class="field"><label>Needs Nick?</label>
-      <select id="add-nick"><option value="true">Yes</option><option value="false">No</option></select>
-    </div>
     <div class="field"><label>Note / blocker (optional)</label><textarea id="add-flag"></textarea></div>
     <div class="modal-actions">
       <button class="btn" onclick="closeModal('add-overlay')">Cancel</button>
@@ -256,7 +225,7 @@ body{font-family:var(--font);background:var(--bg3);color:var(--text);min-height:
 <div class="overlay" id="token-overlay">
   <div class="modal">
     <div class="modal-title">GitHub token setup</div>
-    <div class="token-notice">Your token is stored only in your browser (localStorage) and sent only to GitHub's API when you save a task. It is never transmitted anywhere else.</div>
+    <div class="token-notice">Your token is stored only in your browser and sent only to GitHub's API when you save a task. It is never transmitted anywhere else.</div>
     <div class="field"><label>Personal Access Token (starts with ghp_)</label><input type="password" id="token-input" placeholder="ghp_..."></div>
     <div class="modal-actions">
       <button class="btn" onclick="closeModal('token-overlay')">Cancel</button>
@@ -284,96 +253,79 @@ const DEPT_STYLES = {
   "Treasury":  {bg:"#E6F1FB",c:"#185FA5"},
 };
 
+const DEPT_ORDER = ["Business","Compliance","Finance","Legal","Management","Ops","Partner","Product","Risk","Tech","Treasury"];
+
 let TASKS = [
-  {id:1,dept:"Business",name:"Finalize commercial term sheet with Solviva",owner:"Nick",status:"prog",nick:true,flag:"Pending Solviva sign-off on referral fee structure"},
-  {id:2,dept:"Business",name:"Confirm partner code URL architecture for Solviva and future partners",owner:"Nick + Product",status:"todo",nick:true,flag:"Design decision needed before Tech builds"},
-  {id:3,dept:"Business",name:"Align on installer onboarding SLA and training plan with Solviva",owner:"Nick + Partner",status:"todo",nick:false,flag:""},
-  {id:4,dept:"Business",name:"Define referral fee disbursement mechanics with Finance",owner:"Nick + Finance",status:"todo",nick:true,flag:""},
-  {id:5,dept:"Compliance",name:"Obtain compliance sign-off: Solviva as referral/channel partner, not outsourcing",owner:"Compliance",status:"prog",nick:true,flag:"Deck submitted — awaiting formal ruling"},
-  {id:6,dept:"Compliance",name:"Confirm no outsourcing agreement required under BSP rules",owner:"Compliance + Legal",status:"prog",nick:false,flag:"Linked to item above"},
-  {id:7,dept:"Compliance",name:"Resolve outsourcing implications of Solviva agent promoter-type tasks",owner:"Compliance",status:"block",nick:true,flag:"Flagged in May 11 meeting — unresolved"},
-  {id:8,dept:"Compliance",name:"Confirm Solviva document collection (4 docs) is for referral screening only",owner:"Compliance",status:"prog",nick:false,flag:"Framing established in deck — needs formal acknowledgment"},
-  {id:9,dept:"Finance",name:"Model referral fee P&L impact per loan disbursed",owner:"Finance",status:"todo",nick:false,flag:""},
-  {id:10,dept:"Finance",name:"Set up GL codes for solar loan disbursements and fee payouts",owner:"Finance + Ops",status:"todo",nick:false,flag:""},
-  {id:11,dept:"Finance",name:"Confirm FTP treatment for solar SIL loans",owner:"Finance + Treasury",status:"todo",nick:true,flag:"May require ManCom visibility"},
-  {id:12,dept:"Legal",name:"Draft and execute Referral/Channel Partner Agreement with Solviva",owner:"Legal + Nick",status:"prog",nick:true,flag:"Critical path — nothing launches without this"},
-  {id:13,dept:"Legal",name:"Review asset tagging clause for repossessed solar units",owner:"Legal",status:"todo",nick:false,flag:"Action item from May 11 meeting"},
-  {id:14,dept:"Legal",name:"Confirm loan agreement covers solar-specific terms: asset lien, installer liability",owner:"Legal",status:"todo",nick:false,flag:""},
-  {id:15,dept:"Legal",name:"Ensure BSP disclosure requirements are met for partner-referred loans",owner:"Legal + Compliance",status:"todo",nick:false,flag:""},
-  {id:16,dept:"Management",name:"Present Solviva concept deck to ManCom for approval",owner:"Nick",status:"todo",nick:true,flag:"Gate item — required before full build"},
-  {id:17,dept:"Management",name:"Get ManCom sign-off on budget for Option C co-branded journey build",owner:"Nick",status:"todo",nick:true,flag:"Linked to Product and Tech scoping"},
-  {id:18,dept:"Management",name:"Align ManCom on partner-scale reusability as a core design principle",owner:"Nick",status:"todo",nick:true,flag:""},
-  {id:19,dept:"Ops",name:"Define disbursement SOP: Tonik to installer or direct to customer",owner:"Ops + Nick",status:"todo",nick:true,flag:"Commercial decision with ops implications"},
-  {id:20,dept:"Ops",name:"Build asset tagging and repossession SOP for solar units",owner:"Ops",status:"todo",nick:false,flag:"Action item from May 11 meeting"},
-  {id:21,dept:"Ops",name:"Map post-approval loan servicing workflow: collections, restructuring",owner:"Ops",status:"todo",nick:false,flag:""},
-  {id:22,dept:"Ops",name:"Set up Solviva referral tracking and commission reporting",owner:"Ops + Tech",status:"todo",nick:false,flag:""},
-  {id:23,dept:"Partner",name:"Close out May 12 meeting notes and assign action items",owner:"Nick",status:"block",nick:true,flag:"Session not yet closed — pending summary"},
-  {id:24,dept:"Partner",name:"Share UI/UX options deck (A/B/C) with Solviva for alignment",owner:"Nick",status:"todo",nick:true,flag:"Deck complete — not yet shared"},
-  {id:25,dept:"Partner",name:"Get Solviva sign-off on Option C as target build",owner:"Nick + Partner",status:"todo",nick:true,flag:""},
-  {id:26,dept:"Partner",name:"Define Solviva installer onboarding and training process",owner:"Nick + Partner",status:"todo",nick:false,flag:""},
-  {id:27,dept:"Product",name:"Finalize PRD for solar SIL loan product",owner:"Product",status:"todo",nick:false,flag:""},
-  {id:28,dept:"Product",name:"Confirm Option C co-branded journey as build target with Option A as MVP fallback",owner:"Product + Nick",status:"todo",nick:true,flag:"Decision required before sprint planning"},
-  {id:29,dept:"Product",name:"Define build sequencing: MVP first or straight to Option C",owner:"Product + Nick",status:"todo",nick:true,flag:""},
-  {id:30,dept:"Product",name:"Spec partner code URL architecture for multi-partner scalability",owner:"Product + Tech",status:"todo",nick:false,flag:"Reusability constraint — must be embedded from start"},
-  {id:31,dept:"Risk",name:"Complete credit policy brief for solar SIL at ticket size above 200K",owner:"Risk",status:"todo",nick:false,flag:""},
-  {id:32,dept:"Risk",name:"Define acceptable LTV ratio and solar asset valuation methodology",owner:"Risk",status:"todo",nick:false,flag:""},
-  {id:33,dept:"Risk",name:"Set portfolio concentration limits for solar as an asset class",owner:"Risk + Finance",status:"todo",nick:false,flag:""},
-  {id:34,dept:"Risk",name:"Establish fraud risk controls for installer-originated applications",owner:"Risk + Compliance",status:"todo",nick:false,flag:""},
-  {id:35,dept:"Risk",name:"Review and approve underwriting criteria for partner-referred borrowers",owner:"Risk",status:"todo",nick:false,flag:""},
-  {id:36,dept:"Tech",name:"Scope tech build for Option A QR and agent-assisted MVP",owner:"Tech + Product",status:"todo",nick:false,flag:""},
-  {id:37,dept:"Tech",name:"Scope tech build for Option C co-branded journey",owner:"Tech + Product",status:"todo",nick:false,flag:""},
-  {id:38,dept:"Tech",name:"Build partner code URL routing and attribution system",owner:"Tech",status:"todo",nick:false,flag:"Must be reusable across future partners"},
-  {id:39,dept:"Tech",name:"Integrate Solviva referral flow into Tonik loan application system",owner:"Tech",status:"todo",nick:false,flag:""},
-  {id:40,dept:"Tech",name:"Build referral commission tracking and reporting module",owner:"Tech + Ops",status:"todo",nick:false,flag:""},
-  {id:41,dept:"Treasury",name:"Confirm funding source for solar loan book: on-balance or off-balance",owner:"Treasury + Finance",status:"todo",nick:false,flag:""},
-  {id:42,dept:"Treasury",name:"Align solar loan tenor and amortization with treasury liquidity position",owner:"Treasury",status:"todo",nick:false,flag:""},
+  {id:1,dept:"Business",name:"Finalize commercial term sheet with Solviva",owner:"Nick",status:"prog",flag:"Pending Solviva sign-off on referral fee structure"},
+  {id:2,dept:"Business",name:"Confirm partner code URL architecture for Solviva and future partners",owner:"Nick + Product",status:"todo",flag:"Design decision needed before Tech builds"},
+  {id:3,dept:"Business",name:"Align on installer onboarding SLA and training plan with Solviva",owner:"Nick + Partner",status:"todo",flag:""},
+  {id:4,dept:"Business",name:"Define referral fee disbursement mechanics with Finance",owner:"Nick + Finance",status:"todo",flag:""},
+  {id:5,dept:"Compliance",name:"Obtain compliance sign-off: Solviva as referral/channel partner, not outsourcing",owner:"Compliance",status:"prog",flag:"Deck submitted — awaiting formal ruling"},
+  {id:6,dept:"Compliance",name:"Confirm no outsourcing agreement required under BSP rules",owner:"Compliance + Legal",status:"prog",flag:"Linked to item above"},
+  {id:7,dept:"Compliance",name:"Resolve outsourcing implications of Solviva agent promoter-type tasks",owner:"Compliance",status:"block",flag:"Flagged in May 11 meeting — unresolved"},
+  {id:8,dept:"Compliance",name:"Confirm Solviva document collection (4 docs) is for referral screening only",owner:"Compliance",status:"prog",flag:"Framing established in deck — needs formal acknowledgment"},
+  {id:9,dept:"Finance",name:"Model referral fee P&L impact per loan disbursed",owner:"Finance",status:"todo",flag:""},
+  {id:10,dept:"Finance",name:"Set up GL codes for solar loan disbursements and fee payouts",owner:"Finance + Ops",status:"todo",flag:""},
+  {id:11,dept:"Finance",name:"Confirm FTP treatment for solar SIL loans",owner:"Finance + Treasury",status:"todo",flag:"May require ManCom visibility"},
+  {id:12,dept:"Legal",name:"Draft and execute Referral/Channel Partner Agreement with Solviva",owner:"Legal + Nick",status:"prog",flag:"Critical path — nothing launches without this"},
+  {id:13,dept:"Legal",name:"Review asset tagging clause for repossessed solar units",owner:"Legal",status:"todo",flag:"Action item from May 11 meeting"},
+  {id:14,dept:"Legal",name:"Confirm loan agreement covers solar-specific terms: asset lien, installer liability",owner:"Legal",status:"todo",flag:""},
+  {id:15,dept:"Legal",name:"Ensure BSP disclosure requirements are met for partner-referred loans",owner:"Legal + Compliance",status:"todo",flag:""},
+  {id:16,dept:"Management",name:"Present Solviva concept deck to ManCom for approval",owner:"Nick",status:"todo",flag:"Gate item — required before full build"},
+  {id:17,dept:"Management",name:"Get ManCom sign-off on budget for Option C co-branded journey build",owner:"Nick",status:"todo",flag:"Linked to Product and Tech scoping"},
+  {id:18,dept:"Management",name:"Align ManCom on partner-scale reusability as a core design principle",owner:"Nick",status:"todo",flag:""},
+  {id:19,dept:"Ops",name:"Define disbursement SOP: Tonik to installer or direct to customer",owner:"Ops + Nick",status:"todo",flag:"Commercial decision with ops implications"},
+  {id:20,dept:"Ops",name:"Build asset tagging and repossession SOP for solar units",owner:"Ops",status:"todo",flag:"Action item from May 11 meeting"},
+  {id:21,dept:"Ops",name:"Map post-approval loan servicing workflow: collections, restructuring",owner:"Ops",status:"todo",flag:""},
+  {id:22,dept:"Ops",name:"Set up Solviva referral tracking and commission reporting",owner:"Ops + Tech",status:"todo",flag:""},
+  {id:23,dept:"Partner",name:"Close out May 12 meeting notes and assign action items",owner:"Nick",status:"block",flag:"Session not yet closed — pending summary"},
+  {id:24,dept:"Partner",name:"Share UI/UX options deck (A/B/C) with Solviva for alignment",owner:"Nick",status:"todo",flag:"Deck complete — not yet shared"},
+  {id:25,dept:"Partner",name:"Get Solviva sign-off on Option C as target build",owner:"Nick + Partner",status:"todo",flag:""},
+  {id:26,dept:"Partner",name:"Define Solviva installer onboarding and training process",owner:"Nick + Partner",status:"todo",flag:""},
+  {id:27,dept:"Product",name:"Finalize PRD for solar SIL loan product",owner:"Product",status:"todo",flag:""},
+  {id:28,dept:"Product",name:"Confirm Option C co-branded journey as build target with Option A as MVP fallback",owner:"Product + Nick",status:"todo",flag:"Decision required before sprint planning"},
+  {id:29,dept:"Product",name:"Define build sequencing: MVP first or straight to Option C",owner:"Product + Nick",status:"todo",flag:""},
+  {id:30,dept:"Product",name:"Spec partner code URL architecture for multi-partner scalability",owner:"Product + Tech",status:"todo",flag:"Reusability constraint — must be embedded from start"},
+  {id:31,dept:"Risk",name:"Complete credit policy brief for solar SIL at ticket size above 200K",owner:"Risk",status:"todo",flag:""},
+  {id:32,dept:"Risk",name:"Define acceptable LTV ratio and solar asset valuation methodology",owner:"Risk",status:"todo",flag:""},
+  {id:33,dept:"Risk",name:"Set portfolio concentration limits for solar as an asset class",owner:"Risk + Finance",status:"todo",flag:""},
+  {id:34,dept:"Risk",name:"Establish fraud risk controls for installer-originated applications",owner:"Risk + Compliance",status:"todo",flag:""},
+  {id:35,dept:"Risk",name:"Review and approve underwriting criteria for partner-referred borrowers",owner:"Risk",status:"todo",flag:""},
+  {id:36,dept:"Tech",name:"Scope tech build for Option A QR and agent-assisted MVP",owner:"Tech + Product",status:"todo",flag:""},
+  {id:37,dept:"Tech",name:"Scope tech build for Option C co-branded journey",owner:"Tech + Product",status:"todo",flag:""},
+  {id:38,dept:"Tech",name:"Build partner code URL routing and attribution system",owner:"Tech",status:"todo",flag:"Must be reusable across future partners"},
+  {id:39,dept:"Tech",name:"Integrate Solviva referral flow into Tonik loan application system",owner:"Tech",status:"todo",flag:""},
+  {id:40,dept:"Tech",name:"Build referral commission tracking and reporting module",owner:"Tech + Ops",status:"todo",flag:""},
+  {id:41,dept:"Treasury",name:"Confirm funding source for solar loan book: on-balance or off-balance",owner:"Treasury + Finance",status:"todo",flag:""},
+  {id:42,dept:"Treasury",name:"Align solar loan tenor and amortization with treasury liquidity position",owner:"Treasury",status:"todo",flag:""},
 ];
 
-const CHECKLIST = [
-  {title:"Compliance ruling: referral/channel partner confirmed, not outsourcing",desc:"Formal sign-off from Compliance that the Solviva arrangement does not constitute an outsourcing engagement under BSP rules. Load-bearing for the entire engagement.",tags:["Compliance","Legal"],status:"prog"},
-  {title:"ManCom approval: product concept and build budget",desc:"ManCom presentation and formal approval to proceed with solar financing product, including build budget authorization for Option C.",tags:["Management","Business"],status:"open"},
-  {title:"Referral/Channel Partner Agreement executed with Solviva",desc:"Signed legal agreement defining referral scope, fee mechanics, liability, and data handling. Nothing launches without this.",tags:["Legal","Partner"],status:"prog"},
-  {title:"BSP regulatory framing confirmed",desc:"Confirmation that product structure, disclosures, and partner arrangement are fully compliant with BSP consumer lending rules.",tags:["Compliance","Legal","Risk"],status:"open"},
-  {title:"Credit policy approved for solar SIL",desc:"Risk-approved underwriting criteria, LTV limits, and fraud controls for partner-referred solar loans at ticket sizes above 200K.",tags:["Risk","Finance"],status:"open"},
-  {title:"UI/UX build path decided and locked",desc:"Alignment between Business, Product, and Tech on MVP build path and target-state architecture, with partner code URL design locked before sprint begins.",tags:["Product","Tech","Business"],status:"open"},
-  {title:"Disbursement and ops workflow finalized",desc:"End-to-end SOP for loan disbursement, asset tagging, and repossession procedures documented and approved by Ops and Legal.",tags:["Ops","Legal","Finance"],status:"open"},
-  {title:"Tech build scoped and sprint-ready",desc:"Full tech scoping complete for the agreed build option, with reusable partner URL architecture baked in from day one.",tags:["Tech","Product"],status:"open"},
-  {title:"Referral fee and commission model agreed",desc:"Commercial terms with Solviva finalized, P&L modeled, and Finance and Treasury aligned on fee structure and disbursement mechanics.",tags:["Finance","Treasury","Business"],status:"open"},
-  {title:"Installer onboarding and training plan ready",desc:"Process defined for onboarding Solviva installers including training on referral flow, customer disclosures, and document collection.",tags:["Partner","Ops","Business"],status:"open"},
-  {title:"May 12 meeting notes closed out",desc:"Action items from the May 12 Solviva call summarized and assigned. Currently blocked — session not yet closed.",tags:["Business","Partner"],status:"block"},
-  {title:"Compliance and risk presentation acknowledged by stakeholders",desc:"Multi-slide deck establishing the nature of the Solviva engagement reviewed and formally acknowledged by Compliance and Risk leads.",tags:["Compliance","Risk"],status:"prog"},
-  {title:"UI/UX options deck shared with Solviva",desc:"Three-option presentation shared with Solviva for their review and alignment on preferred customer journey. Deck complete but not yet shared.",tags:["Partner","Product"],status:"open"},
-];
-
-let activeFilter = "all";
-let editingId = null;
 let nextId = 43;
+let activeFilter = "all";
 
-function getToken(){ return localStorage.getItem("gh_token_solviva") || ""; }
-function saveToken(){ 
-  const t = document.getElementById("token-input").value.trim();
-  if(!t){ alert("Please enter a token."); return; }
-  localStorage.setItem("gh_token_solviva", t);
+function getToken(){ return localStorage.getItem("gh_token_solviva")||""; }
+function saveToken(){
+  const t=document.getElementById("token-input").value.trim();
+  if(!t){alert("Please enter a token.");return;}
+  localStorage.setItem("gh_token_solviva",t);
   closeModal("token-overlay");
   setStatus("Token saved.");
 }
 function openTokenModal(){
-  document.getElementById("token-input").value = getToken();
+  document.getElementById("token-input").value=getToken();
   document.getElementById("token-overlay").classList.add("show");
 }
-
-function setStatus(msg, err){
-  const el = document.getElementById("save-status");
-  el.textContent = msg;
-  el.style.color = err ? "var(--danger-txt)" : "var(--text3)";
-  if(msg) setTimeout(()=>{ el.textContent=""; }, 3000);
+function setStatus(msg,err){
+  const el=document.getElementById("save-status");
+  el.textContent=msg;
+  el.style.color=err?"var(--danger-txt)":"var(--text3)";
+  if(msg) setTimeout(()=>{el.textContent="";},3500);
 }
 
 function badge(dept){
-  const s = DEPT_STYLES[dept]||{bg:"#f0efe9",c:"#444"};
+  const s=DEPT_STYLES[dept]||{bg:"#f0efe9",c:"#444"};
   return `<span style="font-size:11px;font-weight:500;padding:3px 10px;border-radius:20px;background:${s.bg};color:${s.c};white-space:nowrap">${dept}</span>`;
 }
-
 function spill(status){
   const m={done:"st-done",prog:"st-prog",block:"st-block",todo:"st-todo",wait:"st-wait"};
   const l={done:"Done",prog:"In progress",block:"Blocked",todo:"To-do",wait:"Waiting"};
@@ -381,23 +333,23 @@ function spill(status){
 }
 
 function renderTasks(){
-  const list = document.getElementById("task-list");
-  let groups = {};
-  TASKS.forEach(t => {
-    const eff = t.status;
-    if(activeFilter==="block" && eff!=="block") return;
-    if(activeFilter==="nick" && !t.nick) return;
-    if(activeFilter==="todo" && eff!=="todo") return;
-    if(activeFilter==="prog" && eff!=="prog") return;
-    if(activeFilter==="done" && eff!=="done") return;
+  const list=document.getElementById("task-list");
+  let groups={};
+  TASKS.forEach(t=>{
+    if(activeFilter==="block"&&t.status!=="block") return;
+    if(activeFilter==="todo"&&t.status!=="todo") return;
+    if(activeFilter==="prog"&&t.status!=="prog") return;
+    if(activeFilter==="done"&&t.status!=="done") return;
     if(!groups[t.dept]) groups[t.dept]=[];
     groups[t.dept].push(t);
   });
   let html="";
-  Object.entries(groups).forEach(([dept,tasks])=>{
+  DEPT_ORDER.forEach(dept=>{
+    if(!groups[dept]) return;
+    const tasks=groups[dept];
     html+=`<div class="dept-section"><div class="dept-head">${badge(dept)}<span class="dept-count">${tasks.length} task${tasks.length!==1?"s":""}</span></div>`;
     tasks.forEach(t=>{
-      const done = t.status==="done";
+      const done=t.status==="done";
       html+=`<div class="task-row">
         <div class="task-cb ${done?"done":""}" onclick="quickDone(${t.id})"></div>
         <div>
@@ -406,8 +358,7 @@ function renderTasks(){
         </div>
         <div class="task-owner">${t.owner}</div>
         ${spill(t.status)}
-        <div class="nick-flag">${t.nick?"Nick":""}</div>
-        <button class="edit-btn" onclick="openEdit(${t.id})" title="Edit task">✎</button>
+        <button class="edit-btn" onclick="openEdit(${t.id})" title="Edit">✎</button>
       </div>`;
     });
     html+="</div>";
@@ -417,24 +368,52 @@ function renderTasks(){
   updateMetrics();
 }
 
+function renderSummary(){
+  const grid=document.getElementById("summary-grid");
+  let html="";
+  DEPT_ORDER.forEach(dept=>{
+    const dTasks=TASKS.filter(t=>t.dept===dept);
+    if(!dTasks.length) return;
+    const total=dTasks.length;
+    const done=dTasks.filter(t=>t.status==="done").length;
+    const blocked=dTasks.filter(t=>t.status==="block").length;
+    const pct=Math.round((done/total)*100);
+    const s=DEPT_STYLES[dept]||{bg:"#f0efe9",c:"#444"};
+    html+=`<div class="summary-card">
+      <div class="sc-dept">
+        <span class="sc-badge" style="background:${s.bg};color:${s.c}">${dept}</span>
+      </div>
+      <div class="sc-stats">
+        <div>
+          <span class="sc-done">${done}</span>
+          <span class="sc-total"> / ${total} tasks</span>
+        </div>
+        <span class="sc-pct">${pct}%</span>
+      </div>
+      <div class="sc-bar-wrap"><div class="sc-bar-fill" style="width:${pct}%"></div></div>
+      ${blocked?`<div class="sc-blocked">⚠ ${blocked} blocked</div>`:""}
+    </div>`;
+  });
+  grid.innerHTML=html;
+}
+
 function updateMetrics(){
   const total=TASKS.length;
   const done=TASKS.filter(t=>t.status==="done").length;
   const block=TASKS.filter(t=>t.status==="block").length;
-  const nick=TASKS.filter(t=>t.nick&&t.status!=="done").length;
   const pct=Math.round((done/total)*100);
   document.getElementById("m-total").textContent=total;
   document.getElementById("m-done").textContent=done;
   document.getElementById("m-block").textContent=block;
-  document.getElementById("m-nick").textContent=nick;
   document.getElementById("m-bar").style.width=pct+"%";
 }
 
 function quickDone(id){
   const t=TASKS.find(t=>t.id===id);
   if(!t) return;
-  t.status = t.status==="done" ? "todo" : "done";
+  t.status=t.status==="done"?"todo":"done";
   renderTasks();
+  renderSummary();
   saveToGitHub();
 }
 
@@ -450,21 +429,18 @@ function switchTab(name,btn){
   document.querySelectorAll(".pane").forEach(p=>p.classList.remove("active"));
   btn.classList.add("active");
   document.getElementById("pane-"+name).classList.add("active");
+  if(name==="summary") renderSummary();
 }
 
 function openEdit(id){
   const t=TASKS.find(t=>t.id===id);
   if(!t) return;
-  editingId=id;
-  document.getElementById("modal-title").textContent="Edit task";
   document.getElementById("edit-id").value=id;
   document.getElementById("edit-name").value=t.name;
   document.getElementById("edit-dept").value=t.dept;
   document.getElementById("edit-owner").value=t.owner;
   document.getElementById("edit-status").value=t.status;
-  document.getElementById("edit-nick").value=String(t.nick);
   document.getElementById("edit-flag").value=t.flag||"";
-  document.getElementById("delete-btn").style.display="";
   document.getElementById("edit-overlay").classList.add("show");
 }
 
@@ -473,25 +449,23 @@ function openAddTask(){
   document.getElementById("add-owner").value="";
   document.getElementById("add-flag").value="";
   document.getElementById("add-status").value="todo";
-  document.getElementById("add-nick").value="false";
   document.getElementById("add-overlay").classList.add("show");
 }
 
 function confirmAddTask(){
   const name=document.getElementById("add-name").value.trim();
-  if(!name){ alert("Please enter a task name."); return; }
-  const t={
+  if(!name){alert("Please enter a task name.");return;}
+  TASKS.push({
     id:nextId++,
     dept:document.getElementById("add-dept").value,
     name,
     owner:document.getElementById("add-owner").value||"TBD",
     status:document.getElementById("add-status").value,
-    nick:document.getElementById("add-nick").value==="true",
     flag:document.getElementById("add-flag").value.trim()
-  };
-  TASKS.push(t);
+  });
   closeModal("add-overlay");
   renderTasks();
+  renderSummary();
   saveToGitHub();
 }
 
@@ -505,11 +479,11 @@ function saveTask(){
     name:document.getElementById("edit-name").value.trim(),
     owner:document.getElementById("edit-owner").value.trim(),
     status:document.getElementById("edit-status").value,
-    nick:document.getElementById("edit-nick").value==="true",
     flag:document.getElementById("edit-flag").value.trim()
   };
   closeModal("edit-overlay");
   renderTasks();
+  renderSummary();
   saveToGitHub();
 }
 
@@ -519,17 +493,15 @@ function deleteTask(){
   TASKS=TASKS.filter(t=>t.id!==id);
   closeModal("edit-overlay");
   renderTasks();
+  renderSummary();
   saveToGitHub();
 }
 
-function closeModal(id){ document.getElementById(id).classList.remove("show"); }
+function closeModal(id){document.getElementById(id).classList.remove("show");}
 
 async function saveToGitHub(){
   const token=getToken();
-  if(!token){
-    setStatus("No token set — changes saved locally only. Click ⚙ GitHub token to enable sync.",true);
-    return;
-  }
+  if(!token){setStatus("No token set — changes won't persist. Click ⚙ GitHub token to enable.",true);return;}
   setStatus("Saving...");
   try{
     const shaRes=await fetch(`${GH_API}/repos/${REPO}/contents/${FILE}`,{
@@ -544,41 +516,22 @@ async function saveToGitHub(){
       headers:{"Authorization":`Bearer ${token}`,"Accept":"application/vnd.github.v3+json","Content-Type":"application/json"},
       body:JSON.stringify({message:"Update PMO tasks",content:encoded,sha})
     });
-    if(res.ok){ setStatus("Saved to GitHub."); }
-    else{ const e=await res.json(); setStatus("Save failed: "+e.message,true); }
-  } catch(e){ setStatus("Save error: "+e.message,true); }
+    if(res.ok){setStatus("Saved.");}
+    else{const e=await res.json();setStatus("Save failed: "+e.message,true);}
+  }catch(e){setStatus("Error: "+e.message,true);}
 }
 
 function buildHTML(){
   const taskJSON=JSON.stringify(TASKS,null,2);
   const src=document.documentElement.outerHTML;
-  return src.replace(/let TASKS = \[[\s\S]*?\];/, `let TASKS = ${taskJSON};`);
+  return src.replace(/let TASKS = \[[\s\S]*?\];/,`let TASKS = ${taskJSON};`);
 }
 
 renderTasks();
-renderChecklist();
-
-function renderChecklist(){
-  const iconM={open:"○",prog:"◷",block:"⚠",done:"✓"};
-  const clsM={open:"ci-open",prog:"ci-prog",block:"ci-block",done:"ci-done"};
-  let html="";
-  CHECKLIST.forEach(c=>{
-    html+=`<div class="ci-item">
-      <div class="ci-icon ${clsM[c.status]}">${iconM[c.status]}</div>
-      <div>
-        <div class="ci-title">${c.title}</div>
-        <div class="ci-desc">${c.desc}</div>
-        <div class="ci-tags">${c.tags.map(t=>`<span class="tag">${t}</span>`).join("")}</div>
-      </div>
-    </div>`;
-  });
-  document.getElementById("checklist-list").innerHTML=html;
-}
+updateMetrics();
 
 if(!getToken()){
-  setTimeout(()=>{
-    setStatus("Set your GitHub token (⚙) to enable saving edits to the live site.",true);
-  },1000);
+  setTimeout(()=>setStatus("Set your GitHub token (⚙) to enable saving edits to the live site.",true),1000);
 }
 </script>
 </body>
